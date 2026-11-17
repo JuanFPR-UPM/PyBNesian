@@ -348,6 +348,10 @@ double MixedKMutualInformation::mi(const std::string& x, const std::string& y, c
 double MixedKMutualInformation::mi(const std::string& x,
                                    const std::string& y,
                                    const std::vector<std::string>& z) const {
+
+    if (z.empty()) {
+        return mi(x, y);
+    }
     auto subset_df = m_scaled_df.loc(x, y, z);
     std::vector<bool> is_discrete_column;
     bool discrete_present = false;
@@ -547,6 +551,10 @@ double MixedKMutualInformation::pvalue(const std::string& x, const std::string& 
 double MixedKMutualInformation::pvalue(const std::string& x,
                                        const std::string& y,
                                        const std::vector<std::string>& z) const {
+
+    if (z.empty()) {
+        return pvalue(x, y);
+    }
     auto subset_df = m_scaled_df.loc(x, y, z);
     std::vector<bool> is_discrete_column;
     bool discrete_present = false;
